@@ -1,0 +1,12 @@
+parameters:
+    level: 8
+
+    paths:
+        - src
+
+    checkGenericClassInNonGenericObjectType: false
+    treatPhpDocTypesAsCertain: true
+    reportUnmatchedIgnoredErrors: false
+
+includes:
+    - vendor/phpstan/phpstan-phpunit/extension.neon

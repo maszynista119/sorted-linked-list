@@ -1,0 +1,44 @@
+{
+  "name": "maszynista119/sorted-linked-list",
+  "description": "Extensible policy-driven sorted linked list with pluggable storage strategies.",
+  "type": "library",
+  "license": "MIT",
+
+  "require": {
+    "php": ">=8.1",
+    "ext-ds": "*"
+  },
+
+  "require-dev": {
+    "phpunit/phpunit": "^10.5 || ^11.0",
+    "phpstan/phpstan": "^1.11",
+    "phpstan/phpstan-phpunit": "^1.4",
+    "friendsofphp/php-cs-fixer": "^3.60",
+    "squizlabs/php_codesniffer": "^3.7"
+  },
+
+  "autoload": {
+    "psr-4": {
+      "M119\\SortedLinkedList\\": "src/"
+    }
+  },
+
+  "autoload-dev": {
+    "psr-4": {
+      "M119\\SortedLinkedList\\Tests\\": "tests/"
+    }
+  },
+
+  "scripts": {
+    "test": "phpunit",
+    "stan": "phpstan analyse",
+    "cs": "php-cs-fixer fix"
+  },
+
+  "config": {
+    "sort-packages": true
+  },
+
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}

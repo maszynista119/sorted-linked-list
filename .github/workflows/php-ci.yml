@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: [8.1, 8.2, 8.3, 8.4, 8.5]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: ds
+          coverage: none
+
+      - name: Validate composer.json
+        run: composer validate --strict --no-check-all
+
+      - name: Install dependencies
+        run: composer install --no-progress --no-suggest --prefer-dist --no-interaction
+
+      - name: Run PHPUnit
+        run: vendor/bin/phpunit --testsuite unit --colors=always
+
+      - name: Run PHP_CodeSniffer
+        run: vendor/bin/phpcs --standard=.phpcs.xml
+
+      - name: Run php-cs-fixer
+        run: vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php --dry-run --verbose
+
+      - name: Run PHPStan
+        run: vendor/bin/phpstan analyse -c phpstan.neon
