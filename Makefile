@@ -13,5 +13,5 @@ cs-fix:
 	docker-compose run --rm php vendor/bin/php-cs-fixer fix
 cs:
 	docker-compose run --rm php vendor/bin/phpcs --standard=.phpcs.xml
-test:
-	docker-compose run --rm php vendor/bin/phpunit
+start:
+	docker-compose up -d
